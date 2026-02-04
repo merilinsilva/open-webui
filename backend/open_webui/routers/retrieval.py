@@ -1552,11 +1552,12 @@ def save_docs_to_vector_db(
             {
                 "id": str(uuid.uuid4()),
                 "text": text,
-                "vector": embeddings[idx],
-                "metadata": metadatas[idx],
+                "vector": vector,
+                "metadata": metadata,
             }
-            for idx, text in enumerate(texts)
+            for text, vector, metadata in zip(texts, embeddings, metadatas)
         ]
+
 
         log.info(f"adding to collection {collection_name}")
         VECTOR_DB_CLIENT.insert(
