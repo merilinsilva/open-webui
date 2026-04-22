@@ -1725,7 +1725,7 @@
 				scrollToBottom();
 			}
 
-			if (messages.length === 0) {
+			if (!$chatId) {
 				await initChatHandler(history);
 			} else {
 				await saveChatHandler($chatId, history);
@@ -1789,7 +1789,7 @@
 			scrollToBottom();
 		}
 
-		if (messages.length === 0) {
+		if (!$chatId) {
 			await initChatHandler(history);
 		} else {
 			await saveChatHandler($chatId, history);
