@@ -40,7 +40,7 @@ RUN npm ci --force
 
 COPY . .
 ENV APP_BUILD_HASH=${BUILD_HASH}
-RUN npm run build
+RUN NODE_OPTIONS=--max-old-space-size=4096 npm run build
 
 ######## WebUI backend ########
 FROM python:3.11.14-slim-bookworm AS base
@@ -195,6 +195,13 @@ RUN if [ "$USE_PERMISSION_HARDENING" = "true" ]; then \
     find /app -type d -exec chmod g+s {} + || true; \
     find /root -type d -exec chmod g+s {} + || true; \
     fi
+
+RUN pip install --no-cache-dir \
+    python-docx==1.1.2 \
+    Pygments>=2.15.0 \
+    latex2mathml \
+    mathml2omml \
+    extract_msg
 
 USER $UID:$GID
 
