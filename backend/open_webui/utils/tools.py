@@ -774,7 +774,6 @@ def clean_properties(schema: dict):
 
 
 def clean_openai_tool_schema(spec: dict) -> dict:
-
     cleaned_spec = copy.deepcopy(spec)
 
     if 'parameters' in cleaned_spec:
