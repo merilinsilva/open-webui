@@ -2003,6 +2003,7 @@
 		// Store raw OR-aligned output items from backend
 		if (output) {
 			message.output = output;
+			message.content = getOutputText(output);
 			dispatchCallOverlayAudio(message);
 		}
 
